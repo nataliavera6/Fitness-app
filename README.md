@@ -4,10 +4,10 @@
 
 ## Our Team
 
-Ariana P. Rodríguez Méndez
-Natalia S. Vera Rivera 
-Donovan Griffin
-Camia Bellamy
+Ariana P. Rodríguez Méndez,
+Natalia S. Vera Rivera,
+Donovan Griffin,
+Camia Bellamy,
 Erick Constant
 
 ## Link:
