@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Habit Tracker UI</title>
+    <style>
+        body {
+            font-family: 'Trebuchet MS', sans-serif;
+            background-color: #f9f9f9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .bold_display {
+            font-weight: bold;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        .edit_button {
+            font-size: 12px;
+            padding: 2px 6px;
+            margin-left: 5px;
+            background-color: #ddd;
+            border-radius: 4px;
+            border: none;
+        }
+
+        .edit_button:hover {
+            background-color: #bbb;
+        }
+
+        /* ===== Water Tracker ===== */
+        .water_tracker_summary {
+            background-color: rgb(204, 230, 255);
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            width: 350px;
+            line-height: 1.4;
+            margin-bottom: 25px;
+        }
+
+        .water_tracker_summary h3 {
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .circle_wrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .progress-ring {
+            transform: rotate(-90deg);
+        }
+
+        .ring-bg {
+            fill: none;
+            stroke: #dbeafe;
+            stroke-width: 10;
+        }
+
+        .ring-fill {
+            fill: none;
+            stroke: #3399ff;
+            stroke-width: 10;
+            stroke-dasharray: 314;
+            stroke-dashoffset: 150;
+            transition: stroke-dashoffset 0.5s ease;
+        }
+
+        .progress-text {
+            font-size: 18px;
+            fill: #000;
+            transform: rotate(90deg);
+        }
+
+        .goal_progress {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .water_buttons {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 10px;
+        }
+
+        .water_buttons button {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 5px;
+            background-color: #3399ff;
+            color: white;
+            font-size: 14px;
+        }
+
+        .intake_logs {
+            background-color: #f0f8ff;
+            border-radius: 8px;
+            padding: 8px;
+        }
+
+        /* ===== Sleep Tracker ===== */
+        .sleep_tracker_summary {
+            background-color: rgb(193, 222, 255);
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            width: 350px;
+            line-height: 1.4;
+        }
+
+        .sleep_tracker_summary h3 {
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .moon_circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #fff, #cbd5e1);
+            margin: 10px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .sleep_goal_section {
+            background-color: #f0f8ff;
+            border-radius: 8px;
+            padding: 8px;
+            margin-bottom: 12px;
+        }
+
+        .weekly_sleep_history {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .day_row {
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== WATER TRACKER COMPONENT ===== -->
+<div class="water_tracker_summary">
+    <h3>Water Intake</h3>
+
+    <div class="circle_wrapper">
+        <svg class="progress-ring" width="120" height="120">
+            <circle class="ring-bg" r="50" cx="60" cy="60" />
+            <circle class="ring-fill" r="50" cx="60" cy="60" />
+            <text x="50%" y="50%" dy=".3em" text-anchor="middle" class="progress-text" id="waterPercent">52%</text>
+        </svg>
+    </div>
+
+    <div class="goal_progress">
+        <p>
+            <span class="bold_display" id="currentIntake">45 oz</span> of
+            <span class="bold_display" id="waterGoal">86 oz</span> goal
+            <button class="edit_button" onclick="editWaterGoal()">✎</button>
+        </p>
+    </div>
+
+    <div class="water_buttons">
+        <button onclick="logWater(16)">16 oz</button>
+        <button onclick="logWater(33)">33 oz</button>
+        <button onclick="customWaterInput()">Custom</button>
+    </div>
+
+    <div class="intake_logs">
+        <p class="bold_display">Logged Today</p>
+        <p>9:00 am - 16 oz</p>
+        <p>11:30 am - 16 oz</p>
+        <p>3:00 pm - 16 oz</p>
+
+        <br />
+        <p class="bold_display">Logged Yesterday</p>
+        <p>8:00 am - 16 oz</p>
+        <p>4:00 pm - 16 oz</p>
+    </div>
+</div>
+
+<!-- ===== SLEEP TRACKER COMPONENT ===== -->
+<div class="sleep_tracker_summary">
+    <h3>Sleep Summary</h3>
+
+    <div class="moon_circle">
+        7h 45min
+    </div>
+
+    <div class="sleep_goal_section">
+        <p>
+            <span class="bold_display">Sleep Goal:</span>
+            <span id="sleepGoal">8 hrs</span>
+            <button class="edit_button" onclick="editSleepGoal()">✎</button>
+        </p>
+    </div>
+
+    <div class="sleep_goal_section">
+        <p><span class="bold_display">Today:</span> 7h 45min</p>
+        <p>Bedtime: 10:30 pm | Wakeup: 6:15 am</p>
+    </div>
+
+    <div class="weekly_sleep_history">
+        <p class="bold_display">This Week</p>
+        <div class="day_row"><span>Sunday</span><span>7h 30min</span></div>
+        <div class="day_row"><span>Monday</span><span>6h 45min</span></div>
+        <div class="day_row"><span>Tuesday</span><span>8h 10min</span></div>
+        <div class="day_row"><span>Wednesday</span><span>7h 0min</span></div>
+        <div class="day_row"><span>Thursday</span><span>6h 30min</span></div>
+        <div class="day_row"><span>Friday</span><span>7h 45min</span></div>
+        <div class="day_row"><span>Saturday</span><span>8h 15min</span></div>
+    </div>
+</div>
+
+<script>
+    function updateWaterRing(current, goal) {
+        const percent = Math.min((current / goal) * 100, 100);
+        const circle = document.querySelector('.ring-fill');
+        const text = document.getElementById('waterPercent');
+        const radius = 50;
+        const circumference = 2 * Math.PI * radius;
+        const offset = circumference - (percent / 100) * circumference;
+
+        circle.style.strokeDashoffset = offset;
+        text.textContent = Math.round(percent) + "%";
+    }
+
+    function logWater(amount) {
+        let current = parseInt(document.getElementById('currentIntake').innerText);
+        let goal = parseInt(document.getElementById('waterGoal').innerText);
+        current += amount;
+        document.getElementById('currentIntake').innerText = current + " oz";
+        updateWaterRing(current, goal);
+    }
+
+    function customWaterInput() {
+        const amount = prompt("Enter custom water amount (oz):");
+        if (amount && !isNaN(amount)) {
+            logWater(parseInt(amount));
+        }
+    }
+
+    function editWaterGoal() {
+        const newGoal = prompt("Set a new daily water goal (oz):");
+        if (newGoal && !isNaN(newGoal)) {
+            document.getElementById('waterGoal').innerText = newGoal + " oz";
+            const current = parseInt(document.getElementById('currentIntake').innerText);
+            updateWaterRing(current, parseInt(newGoal));
+        }
+    }
+
+    function editSleepGoal() {
+        const newGoal = prompt("Set a new sleep goal (hours):");
+        if (newGoal && !isNaN(newGoal)) {
+            document.getElementById('sleepGoal').innerText = newGoal + " hrs";
+        }
+    }
+
+    // Initialize water ring on load
+    updateWaterRing(45, 86);
+</script>
+</body>
+</html>

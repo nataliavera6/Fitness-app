@@ -1,0 +1,103 @@
+<!-- CSS -->
+<style>
+    /* Note that the CSS selector matches the HTML class name */
+    .custom-component-container {
+        text-align: center;
+        background-color: rgb(160, 153, 153);
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);                
+        padding: 10px;
+        border: 1px solid #ddd;
+
+    }
+    .post-container {
+        background-color: rgb(160, 153, 153);
+        border-radius: 3px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);  
+        border: 1px solid #ddd;
+              
+
+        border-radius: 3px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 500px;
+        margin: 20px auto;
+    }
+    .user-info {
+        background-color: rgb(160, 153, 153);
+        border-radius: 3px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);                
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+    .user-image {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 10px;
+    }
+    .username {
+        font-weight: bold;
+        font-size: 16px;
+    }
+    .timestamp {
+        background-color: rgb(160, 153, 153);
+        border-radius: 3px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);                
+
+        font-size: 12px;
+        color: #000000;
+    }
+    .content {
+        background-color: rgb(160, 153, 153);
+        border-radius: 3px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);                
+
+        margin: 10px 0;
+        font-size: 14px;
+        max-height: 150px; /* Limit height */
+        overflow-y: auto; /* Add vertical scroll bar */
+        padding: 5px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+    .post-image {
+        width: 100%;
+        max-height: 300px;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-top: 10px;
+    }
+</style>
+
+<!-- HTML -->
+<div class="custom-component-container">
+    <h2>Post Details</h2>
+    <div class="post-container">
+        <div class="user-info">
+            <img src="{{PROFILE_IMAGE}}" alt="User Image" class="user-image">
+            <div>
+                <div class="username">
+                    <p>
+                        {{USERNAME}}
+                    </p></div>
+                <div class="timestamp">{{TIMESTAMP}}</div>
+            </div>
+        </div>
+        <div class="content">{{CONTENT}}</div>
+        <img src="{{POST_IMAGE}}" class="post-image">
+    </div>
+</div>
+
+
+
+<!-- JavaScript -->
+<script>
+    // Placeholder for any interactive features you may add later
+    console.log("Post component loaded.");
+</script>
