@@ -1,6 +1,7 @@
 # DANCE TEAM
 
-# This is a copy of the private repository that I worked on with my classmates: fall semester 2024-2025 Google tech exchange
+## This is a copy of the private repository that I worked on with my classmates: fall semester 2024-2025 Google tech exchange
+
 ## Our Team
 
 Ariana P. Rodríguez Méndez
