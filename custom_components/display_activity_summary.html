@@ -1,0 +1,35 @@
+<style>
+    /* Style was implemented using Artifical Intellignece 
+    - Make a curved box */
+    .display_activity_summary {
+        background-color: rgb(160, 153, 153);
+        border-radius: 3px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 2.5px; /* Add padding for spacing */
+        line-height: .6; 
+        overflow: visible;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        border-radius: 10px;
+        height: 150px;
+        width: 350psx;
+
+    }
+
+    .display_activity_summary h3 {
+        text-align: center;
+    }
+    .bold_display {
+        font-weight: bold;
+    }
+</style>
+
+<div class="display_activity_summary">
+    <h3>Your Activity Yesterday</h3>
+    <p><span class="bold_display">Calories Burned:</span> {{TOTAL_CAL}}</p>
+    <p><span class="bold_display">Total Time Exercised:</span> {{TOTAL_EXCERISED}} </p>
+    <p><span class="bold_display">Total Distance:</span> {{TOTAL_DISTANCE}}</p>
+    <p><span class="bold_display">Total Steps:</span> {{TOTAL_STEPS}} </p>
+</div>
+
+<script>
+</script>

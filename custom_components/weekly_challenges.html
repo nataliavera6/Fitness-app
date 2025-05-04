@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Weekly Challenges UI</title>
+  <style>
+    body {
+      font-family: 'Trebuchet MS', sans-serif;
+      background-color: #f9f9f9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .bold_display {
+      font-weight: bold;
+    }
+
+    .challenges_container {
+      background-color: #f1f5f9;
+      border-radius: 10px;
+      padding: 15px;
+      width: 350px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .challenges_container h2 {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .challenge_card {
+      background-color: #ffffff;
+      border-radius: 8px;
+      padding: 10px;
+      margin-bottom: 10px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .challenge_card h3 {
+      margin: 0 0 5px 0;
+    }
+
+    .challenge_card p {
+      margin: 0 0 10px 0;
+      font-size: 14px;
+      color: #444;
+    }
+
+    .challenge_card button {
+      padding: 6px 10px;
+      font-size: 14px;
+      border: none;
+      background-color: #3b82f6;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      width: 300px;
+      padding: 20px;
+      display: none;
+      z-index: 1000;
+    }
+
+    .popup .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 18px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .popup h3 {
+      margin-top: 0;
+    }
+
+    .popup ul {
+      padding-left: 20px;
+      font-size: 14px;
+    }
+
+    .popup button {
+      margin-top: 10px;
+      padding: 8px 12px;
+      background-color: #10b981;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .footer_nav {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+      max-width: 350px;
+    }
+
+    .footer_nav div {
+      text-align: center;
+      font-size: 14px;
+      cursor: pointer;
+      padding: 5px;
+    }
+
+    .footer_nav .active {
+      border-bottom: 2px solid #22c55e;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ==== Main Challenge Screen ==== -->
+<div class="challenges_container">
+  <h2>Weekly Challenges</h2>
+
+  <div class="challenge_card">
+    <h3>Walk for 30 minutes</h3>
+    <p>Go for a 30 minute walk at any pace.</p>
+    <button onclick="openPopup('popup1')">View Details</button>
+  </div>
+
+  <div class="challenge_card">
+    <h3>Climb 100 Stairs</h3>
+    <p>Accumulate a total of 100 steps climbed.</p>
+    <button onclick="openPopup('popup2')">View Details</button>
+  </div>
+
+  <div class="challenge_card">
+    <h3>Try a Yoga Stretch</h3>
+    <p>Try a yoga stretch or pose.</p>
+    <button onclick="openPopup('popup3')">View Details</button>
+  </div>
+</div>
+
+<!-- ==== Challenge Detail Popup ==== -->
+<div id="popup2" class="popup">
+  <button class="close-btn" onclick="closePopup('popup2')">✕</button>
+  <h3>Climb 100 Stairs</h3>
+  <ul>
+    <li>Find a set of stairs to use</li>
+    <li>Climb up and down the stairs</li>
+    <li>Repeat until you have reached 100 stairs total</li>
+  </ul>
+  <button onclick="completeChallenge()">Mark as Complete</button>
+</div>
+
+<!-- ==== Completion Popup ==== -->
+<div id="completionPopup" class="popup">
+  <button class="close-btn" onclick="closePopup('completionPopup')">✕</button>
+  <h3>CONGRATULATIONS!</h3>
+  <p>YOU'VE COMPLETED A CHALLENGE.</p>
+  <button onclick="closePopup('completionPopup')">View Another Challenge</button>
+</div>
+
+<!-- ==== Bottom Navigation ==== -->
+<div class="footer_nav">
+  <div>Community</div>
+  <div>Activity</div>
+  <div class="active">Challenges</div>
+</div>
+
+<!-- ==== Scripts ==== -->
+<script>
+  function openPopup(id) {
+    document.getElementById(id).style.display = 'block';
+  }
+
+  function closePopup(id) {
+    document.getElementById(id).style.display = 'none';
+  }
+
+  function completeChallenge() {
+    closePopup('popup2');
+    openPopup('completionPopup');
+  }
+</script>
+
+</body>
+</html>

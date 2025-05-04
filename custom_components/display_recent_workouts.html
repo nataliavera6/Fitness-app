@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recent Workouts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .display_recent_workouts {
+            background-color: rgb(160, 153, 153);
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            margin: 20px;
+            height: 500px;
+            max-height: 700px; /* Max height to prevent overflow */
+            overflow-y: auto; /* Enable scrolling when content overflows */
+        }
+
+        .display_recent_workouts h3 {
+            text-align: center;
+            font-size: 20px;
+        }
+
+        .workout_item {
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .bold_display {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="display_recent_workouts">
+        <h3>Recent Workouts</h3>
+        <div id="workouts-container"></div>
+    </div>
+
+    <script>
+        
+        const workouts = [
+            {
+                'Start Time': '2024-01-01 00:00:00',
+                'End Time': '2024-01-01 00:30:00',
+                'Distance (mi)': 3.2,
+                'Steps': 5000,
+                'Calories Burned': 300,
+                'Start Coordinates': '(90, 80)',
+                'End Coordinates': '(75, 25)'
+            }
+        ];
+
+        
+        const workoutsContainer = document.getElementById("workouts-container");
+
+       
+        workouts.forEach(workout => {
+            const workoutItem = document.createElement("div");
+            workoutItem.className = "workout_item";
+
+            workoutItem.innerHTML = `
+                <p><span class="bold_display">Start Time:</span> ${workout['Start Time']}</p>
+                <p><span class="bold_display">End Time:</span> ${workout['End Time']}</p>
+                <p><span class="bold_display">Distance (mi):</span> ${workout['Distance (mi)']}</p>
+                <p><span class="bold_display">Steps:</span> ${workout['Steps']}</p>
+                <p><span class="bold_display">Calories Burned:</span> ${workout['Calories Burned']}</p>
+                <p><span class="bold_display">Start Coordinates:</span> ${workout['Start Coordinates']}</p>
+                <p><span class="bold_display">End Coordinates:</span> ${workout['End Coordinates']}</p>
+            `;
+
+            workoutsContainer.appendChild(workoutItem);
+        });
+    </script>
+
+</body>
+</html>

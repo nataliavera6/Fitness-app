@@ -1,0 +1,87 @@
+<style>
+    /* Background Container */
+    .display_backround {
+        background-color: rgb(160, 153, 153);
+        padding: 5px;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        width: 325px; /*Adjust width as needed */
+        display: flex; /* Enables flexbox */
+        align-items: center; /* Vertically centers content */
+        justify-content: space-between; /* Separates text and image */        
+    }
+
+    /* Text Section */
+    .display_genai_advice {
+        flex: 1; /* Allows text to take available space */
+        padding-right: 20px; /* Adds spacing between text and image */
+        line-height: 15px;
+        /* margin-bottom: 0px; */
+        
+    }
+
+    /* Image */
+    .custom-image {
+        max-width: 100px; /* Limits image size */
+        height: auto;
+        border-radius: 8px;
+    }
+    .display_genai_advice h3 {
+        text-align: center;
+        margin-top: 0%;
+    }
+    .bold_display {
+        font-weight: bold;
+    }
+</style>
+
+<div class="display_backround">
+    <!-- Text Content -->
+    <div class="display_genai_advice">
+        <h3>D<span style="color:rgb(255, 255, 255);">AI</span>ly Insights:</h3>
+        <p><span class="bold_display">Advice:</span> {{CONTENT}}</p>
+        <p><span class="bold_display">Generated:</span> {{TIME}}</p>
+    </div>
+
+    <!-- Image on the Right -->
+    <img src="{{IMAGE}}" alt="Please Reload - Daily Insight Image" class="custom-image"/>
+</div>
+
+
+<!-- CSS
+<style>
+    /* Note that the CSS selector matches the HTML class name */
+    .display_backround{
+        background-color: rgb(180, 172, 172);
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        width: 300px;
+        margin: auto;
+        height: 100px;
+        margin-left: 350px; 
+        }
+    .display_genai_advice{
+        width: 100px;
+        margin: auto;
+        height: 100px;
+        margin-left: 350px; 
+        }
+    .custom-image {
+        width: 100%; /* Makes image responsive */
+        max-width: 150px; /* Limits the maximum size */
+        height: auto; /* Maintains aspect ratio */
+        border-radius: 8px; /* Optional: rounds corners */
+        margin-left: 150px; 
+    }
+    
+</style>
+
+<div class="display_genai_advice">
+        <h3>d<span style="color:rgb(110, 226, 255);">AI</span>ly insights </h3>
+        <p>Generated: {{TIME}}</p>
+        <p>{{CONTENT}}</p>
+        <img src="{{IMAGE}}" alt="Daily Insight Image" class="custom-image"/>
+    
+    
+    </div> -->

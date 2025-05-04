@@ -1,0 +1,79 @@
+class TestDisplayPost(unittest.TestCase):
+    """Tests the display_post function.
+    
+        Step 1: Let's come up with some test cases.
+        - Post with missing fields (missing images)
+        - Regular posts.
+    """
+    
+    @patch('streamlit.markdown')
+    @patch('data_fetcher.get_user_posts')
+    # Step 2: Patch the mocks we need.
+    # How is the function called in app.py?
+    def test_missing_user_image(self, mock_user_posts, mock_markdown):
+        # Step 3: Fake our user post.
+        mock_user_posts.get_user_posts.return_value = [{
+            'username' : 'fake_user_name', 
+            'user_image' : None,
+            'timestamp' : '2025-03-05 12:00:00', 
+            'content' : 'This is a test', 
+            'post_image' : 'https://plus.unsplash.com/premium_photo-1669048780129-051d670fa2d1?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+        }]
+        user1 = mock_user_posts.get_user_posts()[0]
+        display_post(user1['username'], 
+                     user1['user_image'], 
+                     user1['timestamp'], 
+                     user1['content'], 
+                     user1['post_image'])
+        # Step 4: Assert expectation.
+        mock_markdown.assert_any_call("👤")
+        
+    @patch('streamlit.markdown')
+    @patch('data_fetcher.get_user_posts')
+    # Step 2: Patch the mocks we need.
+    # How is the function called in app.py?
+    def test_missing_post_image(self, mock_user_posts, mock_markdown):
+        # Step 3: Fake our user post.
+        mock_user_posts.get_user_posts.return_value = [{
+            'username' : 'fake_user_name', 
+            'user_image' : 'https://upload.wikimedia.org/wikipedia/commons/c/c8/Puma_shoes.jpg',
+            'timestamp' : '2025-03-05 12:00:00', 
+            'content' : 'This is a test', 
+            'post_image' : None,
+        }]
+        user1 = mock_user_posts.get_user_posts()[0]
+        display_post(user1['username'], 
+                     user1['user_image'], 
+                     user1['timestamp'], 
+                     user1['content'], 
+                     user1['post_image'])
+        # Step 4: Assert expectation.
+        mock_markdown.assert_any_call("*No image available*")
+        
+    @patch('streamlit.markdown')
+    @patch('streamlit.image')
+    @patch('data_fetcher.get_user_posts')
+    # Step 2: Patch the mocks we need.
+    # How is the function called in app.py?
+    def test_regular_post(self, mock_user_posts, mock_image, mock_markdown):
+        # Step 3: Fake our user post.
+        mock_user_posts.get_user_posts.return_value = [{
+            'username' : 'fake_user_name', 
+            'user_image' : 'https://upload.wikimedia.org/wikipedia/commons/c/c8/Puma_shoes.jpg',
+            'timestamp' : '2025-03-05 12:00:00', 
+            'content' : 'This is a test', 
+            'post_image' : 'https://plus.unsplash.com/premium_photo-1669048780129-051d670fa2d1?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        }]
+        user1 = mock_user_posts.get_user_posts()[0]
+        display_post(user1['username'], 
+                     user1['user_image'], 
+                     user1['timestamp'], 
+                     user1['content'], 
+                     user1['post_image'])
+        # Step 4: Assert expectation.
+        mock_markdown.assert_any_call("## Recent Post")
+        mock_image.assert_any_call(user1['user_image'], width=70)
+        mock_markdown.assert_any_call(f"**{user1['username']}**")
+        mock_markdown.assert_any_call(f"*{user1['timestamp']}*")
+        mock_markdown.assert_any_call(f"{user1['content']}")
+        mock_image.assert_any_call(user1['post_image'], use_container_width=True)
